@@ -1,0 +1,96 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mdm-engine"
+version = "1.0.0"
+description = "MDM (Model Oversight Engine): L0/L1/L2 oversight, clamps, human-in-the-loop review, and end-to-end audit telemetry"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "Apache-2.0"
+authors = [
+    {name = "Mucahit Muzaffer", email = "mucahit.muzaffer@gmail.com"}
+]
+maintainers = [
+    {name = "Mucahit Muzaffer", email = "mucahit.muzaffer@gmail.com"}
+]
+keywords = [
+    "ethics",
+    "decision-making",
+    "safety",
+    "ai",
+    "moral-reasoning",
+    "auditability",
+    "governance",
+    "human-in-the-loop",
+    "escalation",
+    "traceability",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Intended Audience :: System Administrators",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Security",
+    "Topic :: System :: Systems Administration",
+]
+
+dependencies = [
+    "numpy>=1.24.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+]
+dashboard = [
+    "streamlit>=1.28.0",
+    "plotly>=5.17.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/MeetlyTR/mdm-engine"
+Documentation = "https://github.com/MeetlyTR/mdm-engine/blob/main/README.md"
+Repository = "https://github.com/MeetlyTR/mdm-engine"
+Issues = "https://github.com/MeetlyTR/mdm-engine/issues"
+Changelog = "https://github.com/MeetlyTR/mdm-engine/blob/main/CHANGELOG.md"
+Security = "https://github.com/MeetlyTR/mdm-engine/blob/main/SECURITY.md"
+
+[project.scripts]
+mdm = "mdm_engine.cli:main"
+
+[tool.setuptools]
+# Auto-discover packages (includes mdm_engine, core, config_profiles, etc.)
+packages = {find = {}}
+# Include root-level modules
+py-modules = ["engine", "config"]
+
+[tool.setuptools.package-data]
+mdm_engine = ["py.typed"]
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py38"
+
+[tool.pytest.ini_options]
+# Test yapısı kaldırıldı; canlı deneme için mdm dashboard kullanın.
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

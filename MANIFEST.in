@@ -1,0 +1,17 @@
+include README.md
+include LICENSE
+include USAGE_POLICY.md
+include SAFETY_LIMITATIONS.md
+include AUDITABILITY.md
+include CHANGELOG.md
+include engine.py
+include config.py
+recursive-include ami_engine *.py
+recursive-include core *.py
+recursive-include config_profiles *.py
+recursive-include visualization *.py
+recursive-include tools *.py
+recursive-include learning *.py
+recursive-include simulation *.py
+recursive-include examples *.py
+recursive-include examples *.md

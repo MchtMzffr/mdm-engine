@@ -1,0 +1,3 @@
+# Phase 4.7.2 Dashboard (isteğe bağlı)
+streamlit>=1.28.0
+plotly>=5.18.0

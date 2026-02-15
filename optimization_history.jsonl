@@ -1,0 +1,4 @@
+{"step": 0, "L": 1.2638, "fail_safe_rate": 0.35, "mean_cus": 0.7034, "clamp_distortion": 0.0707, "J_MIN": 0.5627, "H_MAX": 0.5, "SOFT_CLAMP_ALPHA": 0.5603, "SOFT_CLAMP_BETA": 0.4925, "SOFT_CLAMP_GAMMA": 0.3199}
+{"step": 1, "L": 1.2625, "fail_safe_rate": 0.35, "mean_cus": 0.7041, "clamp_distortion": 0.0667, "J_MIN": 0.5838, "H_MAX": 0.4974, "SOFT_CLAMP_ALPHA": 0.5601, "SOFT_CLAMP_BETA": 0.4463, "SOFT_CLAMP_GAMMA": 0.3156}
+{"step": 2, "L": 1.2605, "fail_safe_rate": 0.35, "mean_cus": 0.7043, "clamp_distortion": 0.0625, "J_MIN": 0.5772, "H_MAX": 0.4998, "SOFT_CLAMP_ALPHA": 0.5949, "SOFT_CLAMP_BETA": 0.4153, "SOFT_CLAMP_GAMMA": 0.298}
+{"step": 3, "L": 1.2584, "fail_safe_rate": 0.35, "mean_cus": 0.7041, "clamp_distortion": 0.0585, "J_MIN": 0.5608, "H_MAX": 0.4991, "SOFT_CLAMP_ALPHA": 0.5548, "SOFT_CLAMP_BETA": 0.3998, "SOFT_CLAMP_GAMMA": 0.2706}
