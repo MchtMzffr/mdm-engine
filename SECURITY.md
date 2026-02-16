@@ -38,6 +38,10 @@ Please report security vulnerabilities privately:
 - We will notify you when the vulnerability is fixed
 - We will credit you in the security advisory (if desired)
 
+## Repo Hygiene
+
+- **No secrets in repo**: Do not commit API keys, tokens, or `.env`. Use `.env.example` as a template; `.env` and `.env.local` are gitignored. Trace/output files (`*.jsonl`, `review_log.jsonl`, etc.) are gitignored to avoid leaking sensitive run data.
+
 ## Security Best Practices
 
 ### For Users
@@ -50,7 +54,7 @@ Please report security vulnerabilities privately:
 
 ### For Developers
 
-1. **Dependency Updates**: Regularly update dependencies (`pip list --outdated`)
+1. **Dependency Updates**: Regularly update dependencies (`pip list --outdated`). Run `pip-audit` (or Dependabot) to check for known vulnerabilities.
 2. **Code Review**: All security-related changes require review
 3. **Testing**: Security fixes must include tests
 4. **Documentation**: Security changes must be documented in CHANGELOG.md

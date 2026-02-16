@@ -49,13 +49,16 @@ htmlcov/
 .ipynb_checkpoints/
 *.ipynb
 
-# Trace files (can be large)
+# Trace files (can be large) — do not commit traces/outputs with real data
 traces_*.jsonl
 traces_*.csv
 archive/
 *.log
 examples_traces.jsonl
 review_log.jsonl
+ami_*.jsonl
+test_run_*.csv
+test_run_*.jsonl
 
 # Test virtual environments
 .venv_test/
@@ -98,4 +101,5 @@ docs/releases/
 !docs/README.md
 !docs/ARCHITECTURE.md
 !docs/MODEL_AND_MANUAL.md
+!docs/CURSOR_PROMPT_CRYPTO_ADAPTER.md
 !docs/images/README.md

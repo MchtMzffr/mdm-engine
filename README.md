@@ -5,6 +5,8 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
+> **Official releases** only from [MeetlyTR/mdm-engine](https://github.com/MeetlyTR/mdm-engine). Do not trust packages or clones from other origins for security updates.
+
 > MDM is an oversight engine that monitors model decisions at L0/L1/L2, applies clamps when needed, and escalates to human review at L2.
 
 ---
@@ -86,7 +88,7 @@ MDM (Model Oversight Engine) is a **regulation-grade** engine for **model oversi
 - ❌ **Does not make domain-specific decisions**: This is a **decision regulator**; domain knowledge comes from the adapter layer
 - ❌ **Does not process personal data**: Receives raw state from domain adapter; does not collect/surveil data
 - ❌ **Does not apply automatic sanctions**: Human escalation is mandatory at L2
-- ❌ **Does not perform surveillance/identification**: These uses are prohibited (see USAGE_POLICY.md)
+- ❌ **Does not perform surveillance/identification**: These uses are **prohibited**. Permitted and prohibited uses: **[USAGE_POLICY.md](USAGE_POLICY.md)**
 
 ---
 
@@ -230,7 +232,7 @@ python examples/hello_world.py
 ## Documentation
 
 - **README.md** (this file): Overview
-- **USAGE_POLICY.md**: Usage policy and prohibitions
+- **[USAGE_POLICY.md](USAGE_POLICY.md)**: Permitted and prohibited uses (surveillance/identification prohibited)
 - **SAFETY_LIMITATIONS.md**: Safety boundaries and warnings
 - **AUDITABILITY.md**: Auditability and trace schema
 - **CHANGELOG.md**: Version history
