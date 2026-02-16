@@ -93,3 +93,9 @@ docs/*.txt
 docs/reports/
 docs/development/
 docs/releases/
+
+# Exceptions: tracked docs (EN only)
+!docs/README.md
+!docs/ARCHITECTURE.md
+!docs/MODEL_AND_MANUAL.md
+!docs/images/README.md
