@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from typing import Any
 
-from decision_schema.types import Proposal as TradeProposal
-from mdm_engine.mdm.reference_model import compute_proposal_reference, compute_proposal_private
+from decision_schema.types import Proposal
+from mdm_engine.mdm.reference_model_generic import compute_proposal_reference, compute_proposal_private
 
 
 class DecisionEngine:
@@ -19,14 +19,14 @@ class DecisionEngine:
     def __init__(
         self,
         confidence_threshold: float = 0.5,
-        imbalance_threshold: float = 0.1,
+        signal_threshold: float = 0.1,
         **kwargs,  # Passed to private model if available
     ):
         self.confidence_threshold = confidence_threshold
-        self.imbalance_threshold = imbalance_threshold
+        self.signal_threshold = signal_threshold
         self._private_kwargs = kwargs
     
-    def propose(self, features: dict[str, Any]) -> TradeProposal:
+    def propose(self, features: dict[str, Any]) -> Proposal:
         """
         Generate proposal from features.
         
@@ -46,5 +46,5 @@ class DecisionEngine:
         return compute_proposal_reference(
             features,
             confidence_threshold=self.confidence_threshold,
-            imbalance_threshold=self.imbalance_threshold,
+            signal_threshold=self.signal_threshold,
         )
