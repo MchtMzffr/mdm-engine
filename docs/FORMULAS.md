@@ -40,9 +40,9 @@ signal = w1 * imbalance + w2 * pressure + w3 * (sigma_spike_z < threshold)
 confidence = sigmoid(signal) = 1 / (1 + exp(-signal))
 ```
 
-If `confidence >= min_confidence_to_quote` AND `imbalance >= imbalance_min_to_quote`:
+If `confidence >= min_confidence_threshold` AND signal strength exceeds threshold:
 - Action = `ACT`
-- Size clamped to `max_per_market_usd`
+- Parameters clamped to policy limits (e.g., `max_value`)
 
 Otherwise:
 - Action = `HOLD`

@@ -2,7 +2,7 @@
 
 ## Overview
 
-MDM Engine is a **runtime system** for Market Decision Models. It orchestrates the flow: market events → features → MDM proposal → DMC modulation → execution → trace.
+MDM Engine is a **runtime system** for Model Decision Models (MDM). It orchestrates the flow: events → features → MDM proposal → (optional DMC modulation) → execution → trace.
 
 ## Data Flow
 
@@ -55,7 +55,7 @@ Features are generic (no exchange-specific logic).
 
 **Private Hook**:
 - `ami_engine/mdm/_private/model.py` (gitignored)
-- `compute_proposal_private(features, **kwargs) -> TradeProposal`
+- `compute_proposal_private(features, **kwargs) -> Proposal`
 - If present, `DecisionEngine` uses it; otherwise uses reference
 
 ### 4. Adapters (`ami_engine/adapters/`)
@@ -86,22 +86,24 @@ Reference implementations for testing:
 
 ## Integration Points
 
-### MDM → DMC
+### MDM → (Optional DMC)
 
-MDM outputs `TradeProposal` (from `dmc_core.schema.types`):
-- `action`: Proposed action (QUOTE/FLATTEN/HOLD/etc.)
+MDM outputs `Proposal` (from `decision-schema`):
+- `action`: Proposed action (`ACT`/`EXIT`/`HOLD`/`CANCEL`/`STOP`)
 - `confidence`: [0, 1] confidence score
 - `reasons`: List of reason strings
-- Action-specific fields (quotes, size) if action == QUOTE
+- `params`: Generic dict for domain-specific parameters
 
-DMC modulates proposal and returns `FinalAction` + `MismatchInfo`.
+**Optional DMC Integration**: If `decision-modulation-core` is integrated, DMC modulates the proposal and returns `FinalDecision` + `MismatchInfo`. Otherwise, proposals are executed directly.
 
 ### Execution → Broker
 
 Executor calls `Broker` interface methods:
-- `submit_order()` for QUOTE
-- `cancel_all()` for FLATTEN/CANCEL_ALL/STOP
+- `submit_order()` for `ACT` actions
+- `cancel_all()` for `EXIT`/`CANCEL`/`STOP` actions
 - `process_fills()` to get fill events
+
+**Note**: Action names are generic (`ACT`, `EXIT`, `CANCEL`, `STOP`). Domain-specific interpretation (e.g., "submit order" for trading) is handled by the `Broker` implementation.
 
 Broker implementation is user-provided (not in MDM Engine).
 

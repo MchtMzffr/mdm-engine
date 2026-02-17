@@ -70,8 +70,8 @@ proposal = mdm.propose(features)
 ## DMC Integration
 
 ```python
-from dmc_core.dmc.modulator import modulate
-from dmc_core.dmc.risk_policy import RiskPolicy
+from decision_modulation_core.dmc.modulator import modulate
+from decision_modulation_core.dmc.risk_policy import RiskPolicy
 
 # Context from system state
 context = {

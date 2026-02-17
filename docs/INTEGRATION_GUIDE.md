@@ -72,23 +72,33 @@ features = build_features(
 # Returns: {"mid": 0.5, "spread_bps": 400, "depth": 100, ...}
 ```
 
-### Integration with DMC
+### Integration with Decision Schema
 
 MDM Engine outputs `Proposal` (from `decision-schema`):
 
 ```python
-from decision_schema.types import Proposal
-proposal = Proposal(action=Action.ACT, confidence=0.8, ...)
+from decision_schema.types import Proposal, Action
+
+proposal = Proposal(
+    action=Action.ACT,
+    confidence=0.8,
+    reasons=["signal_detected"],
+    params={"value": 100},
+)
 ```
 
-DMC modulates this proposal:
+### Optional: Integration with DMC
+
+For risk-aware decision modulation, you can integrate `decision-modulation-core` (DMC) as an optional layer:
 
 ```python
-from dmc_core.dmc.modulator import modulate
-from dmc_core.dmc.risk_policy import RiskPolicy
+from decision_modulation_core.dmc.modulator import modulate
+from decision_modulation_core.dmc.risk_policy import RiskPolicy
 
 final_action, mismatch = modulate(proposal, RiskPolicy(), context)
 ```
+
+**Note**: DMC is **optional**. MDM Engine depends only on `decision-schema`; DMC integration is a separate concern.
 
 ## Trace/Audit
 

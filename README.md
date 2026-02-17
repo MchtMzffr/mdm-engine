@@ -16,7 +16,7 @@ MDM Engine is designed to work across **any domain** that requires proposal gene
 ## What MDM Engine Does
 
 MDM Engine provides:
-- **Event Loop**: Orchestrates proposal generation → DMC modulation → execution flow
+- **Event Loop**: Orchestrates proposal generation → (optional DMC modulation) → execution flow
 - **Feature Extraction**: Builds features from event data (generic event dictionaries)
 - **Reference MDM**: Simple explainable scoring model (logistic/linear) for demonstration
 - **Adapters**: Generic interfaces for data sources and executors
@@ -131,19 +131,20 @@ print(f"Action: {proposal.action}, Confidence: {proposal.confidence}")
 
 ## Integration with Decision Schema
 
-MDM Engine outputs `Proposal` (from `decision-schema` package). **DMC is optional but highly recommended** for risk management.
+MDM Engine outputs `Proposal` (from `decision-schema` package). This is the **single source of truth** for type contracts.
 
-**Schema Dependency**: MDM Engine depends on `decision-schema>=0.1,<0.2` for type contracts. This ensures compatibility across the multi-core ecosystem.
+**Schema Dependency**: MDM Engine depends **only** on `decision-schema>=0.1,<0.2` for type contracts. This ensures compatibility across the multi-core ecosystem.
 
-**Without DMC**: Proposals are executed directly (no risk guards).
-
-**With DMC**: Proposals are modulated by guards before execution:
+**Optional DMC Integration**: For risk-aware decision modulation, you can integrate `decision-modulation-core` (DMC) as an optional layer:
 
 ```python
-from dmc_core.dmc.modulator import modulate
-from dmc_core.dmc.risk_policy import RiskPolicy
+from decision_schema.types import Proposal, Action, FinalDecision
+from decision_modulation_core.dmc.modulator import modulate
+from decision_modulation_core.dmc.risk_policy import RiskPolicy
 
 proposal = mdm.propose(features)
+
+# Optional: Apply risk guards via DMC
 final_action, mismatch = modulate(proposal, RiskPolicy(), context)
 
 if mismatch.flags:
@@ -152,6 +153,8 @@ if mismatch.flags:
 
 # Execute final_action
 ```
+
+**Without DMC**: Proposals can be executed directly (no risk guards). This is suitable for testing or when risk management is handled elsewhere.
 
 See `decision-modulation-core` repository for DMC documentation.
 
