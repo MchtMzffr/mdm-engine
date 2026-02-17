@@ -38,6 +38,8 @@ ENV/
 *.secrets*
 secrets*.yaml
 *secret*
+# Allow the security module (provider interface), not secret data files
+!mdm_engine/security/secrets.py
 *.key
 *.pem
 
