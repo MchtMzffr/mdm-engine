@@ -1,5 +1,5 @@
-"""Event loop: run_loop with PacketV2 and latency."""
+"""Event loop: moved to docs/examples. Core is propose-only."""
 
-from ami_engine.loop.run_loop import run_loop
+# run_loop removed from package (was importing dmc_core). See docs/examples/README.md.
 
-__all__ = ["run_loop"]
+__all__: list[str] = []

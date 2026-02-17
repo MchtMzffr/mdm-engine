@@ -6,75 +6,42 @@ import pytest
 
 
 def test_dmc_schema_imports() -> None:
-    """Verify DMC schema types can be imported."""
-    from decision_schema.types import Action, Proposal as TradeProposal, FinalDecision as FinalAction, MismatchInfo
+    """Verify decision_schema types can be imported."""
+    from decision_schema.types import Action, Proposal, FinalDecision, MismatchInfo
     from decision_schema.packet_v2 import PacketV2
-    
-    # Verify types exist
-    assert Action is not None
-    assert TradeProposal is not None
-    assert FinalAction is not None
-    assert MismatchInfo is not None
-    assert PacketV2 is not None
+    assert Action is not None and Proposal is not None
+    assert FinalDecision is not None and MismatchInfo is not None and PacketV2 is not None
 
 
 def test_dmc_modulator_imports() -> None:
-    """Verify DMC modulator can be imported."""
+    """Verify DMC modulator and GuardPolicy can be imported (optional dep)."""
+    pytest.importorskip("dmc_core")
     from dmc_core.dmc.modulator import modulate
-    from dmc_core.dmc.risk_policy import RiskPolicy
-    
-    assert modulate is not None
-    assert RiskPolicy is not None
+    from dmc_core.dmc.policy import GuardPolicy
+    assert modulate is not None and GuardPolicy is not None
 
 
 def test_dmc_contract_smoke() -> None:
-    """Smoke test: dummy proposal passes through DMC modulator."""
-    from decision_schema.types import Action, Proposal as TradeProposal
+    """Smoke test: Proposal passes through DMC modulator (GuardPolicy)."""
+    pytest.importorskip("dmc_core")
+    from decision_schema.types import Action, Proposal
     from dmc_core.dmc.modulator import modulate
-    from dmc_core.dmc.risk_policy import RiskPolicy
-    
-    # Create dummy proposal
-    proposal = TradeProposal(
-        action=Action.QUOTE,
-        confidence=0.8,
-        reasons=["test"],
-        params={"bid_quote": 0.49, "ask_quote": 0.51, "size_usd": 1.0},
-    )
-    
-    # Create context (minimal required fields)
+    from dmc_core.dmc.policy import GuardPolicy
+    proposal = Proposal(action=Action.ACT, confidence=0.8, reasons=["test"])
     context = {
-        "now_ms": 1000,
-        "last_event_ts_ms": 950,
-        "depth": 100.0,
-        "spread_bps": 400.0,
-        "current_total_exposure_usd": 5.0,
-        "abs_inventory": 2.0,
+        "now_ms": 1000, "last_event_ts_ms": 950,
+        "errors_in_window": 0, "steps_in_window": 10,
+        "rate_limit_events": 0, "recent_failures": 0,
     }
-    
-    # Create policy (defaults)
-    policy = RiskPolicy()
-    
-    # Modulate (should not crash)
-    final_action, mismatch = modulate(proposal, policy, context)
-    
-    # Verify return types
-    assert final_action is not None
-    assert mismatch is not None
-    assert final_action.action in [Action.QUOTE, Action.HOLD]  # May be overridden to HOLD by guards
+    policy = GuardPolicy()
+    final_decision, mismatch = modulate(proposal, policy, context)
+    assert final_decision is not None and mismatch is not None
+    assert final_decision.action in (Action.ACT, Action.HOLD, Action.STOP)
 
 
 def test_dmc_schema_fields_present() -> None:
-    """Verify TradeProposal has expected fields."""
-    from decision_schema.types import Proposal as TradeProposal, Action
-    
-    proposal = TradeProposal(
-        action=Action.HOLD,
-        confidence=0.5,
-        reasons=["test"],
-    )
-    
-    # Verify required fields
-    assert hasattr(proposal, "action")
-    assert hasattr(proposal, "confidence")
-    assert hasattr(proposal, "reasons")
-    assert hasattr(proposal, "params")  # params dict contains bid_quote, ask_quote, size_usd
+    """Verify Proposal has expected fields (0.2 contract)."""
+    from decision_schema.types import Proposal, Action
+    proposal = Proposal(action=Action.HOLD, confidence=0.5, reasons=["test"])
+    assert hasattr(proposal, "action") and hasattr(proposal, "confidence")
+    assert hasattr(proposal, "reasons") and hasattr(proposal, "params")

@@ -26,33 +26,36 @@ See `docs/INTEGRATION_GUIDE.md`.
 All platform-specific demos (e.g., any single-site or single-provider integrations) are documented under:
 - `docs/examples/` (explicitly **Example domain only**)
 
-## Core Components
+## Core API (proposal generation)
 
-### 1. Event Loop (`ami_engine/loop/run_loop.py`)
+`mdm-engine` produces a `decision_schema.types.Proposal` from a domain-agnostic state/context snapshot.
 
-Main orchestration: event → features → MDM proposal → DMC modulation → execution → trace.
+### Contract
+
+- **Input**: `state: dict`, `context: dict`
+- **Output**: `Proposal` (+ optional `PacketV2` emitted by the integration layer)
+
+### Non-goals
+
+- No execution, no adapters, no platform/service coupling in core.
+- Any end-to-end loops live under `docs/examples/` (Example domain only).
+
+## Components
+
+### 1. Reference MDM (`ami_engine/mdm/`)
+
+- `decision_engine.py`: Glues features → proposal (uses private hook if available)
+- `reference_model.py`: Simple logistic scoring (demonstration)
 
 ### 2. Feature Extraction (`ami_engine/features/feature_builder.py`)
 
-Builds features from generic event dictionaries:
-- Basic: numeric values, timestamps, counts
-- Advanced: aggregations, rolling statistics, derived metrics
+Builds features from generic event dictionaries (numeric values, timestamps, aggregations).
 
-### 3. Reference MDM (`ami_engine/mdm/`)
+### 3. Integration loop (example only)
 
-- `reference_model.py`: Simple logistic scoring (demonstration)
-- `decision_engine.py`: Glues features → proposal (uses private hook if available)
-- `position_manager.py`: Reference exit policy (TP/SL/time stops) - **reference only, not production-ready**
+Event loop and DMC integration: see `docs/examples/` for example integration (not part of core package).
 
-### 4. Adapters (`ami_engine/adapters/`)
-
-Generic interfaces:
-- `DataSource`: Abstract interface for event streams
-- `Broker`: Abstract interface for action execution
-
-No domain-specific implementations (external adapters removed; use your own).
-
-### 5. Trace/Audit (`ami_engine/trace/`, `ami_engine/security/`)
+### 4. Adapters / Trace / Audit (`ami_engine/adapters/`, `ami_engine/trace/`, `ami_engine/security/`)
 
 - `TraceLogger`: Writes PacketV2 to JSONL
 - `AuditLogger`: Security audit logs
@@ -125,7 +128,7 @@ See `decision-modulation-core` repository for DMC documentation.
 - `docs/TERMINOLOGY.md`: Key terms and concepts
 - `docs/SAFETY_LIMITATIONS.md`: What MDM Engine does NOT guarantee
 - `docs/PUBLIC_RELEASE_GUIDE.md`: Public release checklist
-- `docs/examples/`: Domain-specific examples (content moderation, robotics, trading)
+- `docs/examples/`: Example integration (content moderation, robotics, scheduling)
 
 ## Installation
 

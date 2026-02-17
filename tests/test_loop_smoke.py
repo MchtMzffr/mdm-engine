@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 
+@pytest.mark.skip(reason="run_loop moved to docs/examples; core is propose-only")
 def test_loop_smoke():
     from ami_engine.sim.microstructure_sim import MicrostructureSim
     from ami_engine.sim.synthetic_source import SyntheticSource
