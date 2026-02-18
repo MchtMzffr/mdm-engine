@@ -1,7 +1,8 @@
 """
-INVARIANT 0: Domain-agnosticism in public surface (docs + core code, examples excluded).
+INVARIANT 0: Domain-agnosticism in public surface (docs + packaged core only).
 
-Scans README.md, docs/ (excluding examples), and mdm_engine/mdm/*.py (excluding position_manager.py only).
+Scans README.md, docs/ (excluding examples), and packaged core: mdm_engine/mdm + mdm_engine/security.
+EXCLUDE_CODE = [] — scan aligns with pyproject allowlist.
 """
 
 import re
@@ -15,11 +16,9 @@ FORBIDDEN_TERMS = {
 }
 
 PUBLIC_DOCS = ["README.md", "docs/"]
-# Proposal core only (adapters/execution/sim/features are example-domain or legacy)
-CODE_DIR = "mdm_engine/mdm"
+CODE_DIRS = ["mdm_engine/mdm", "mdm_engine/security"]
 EXCLUDE_DOCS = [r"docs[/\\]examples[/\\]", r"docs[/\\]PUBLIC_RELEASE_GUIDE\.md", r"docs[/\\]TERMINOLOGY\.md", r"tests/.*"]
-# position_manager.py excluded until quarantined (execution state has domain terms)
-EXCLUDE_CODE = [r"position_manager\.py$"]
+EXCLUDE_CODE: list[str] = []
 
 
 def _find_doc_files(repo_root: Path) -> list[Path]:
@@ -40,16 +39,17 @@ def _find_doc_files(repo_root: Path) -> list[Path]:
 
 
 def _find_code_files(repo_root: Path) -> list[Path]:
-    path = repo_root / CODE_DIR
-    if not path.exists():
-        return []
     files = []
-    for f in path.rglob("*.py"):
-        rel = str(f.relative_to(repo_root)).replace("\\", "/")
-        if any(re.search(pat, rel) for pat in EXCLUDE_CODE):
+    for code_dir in CODE_DIRS:
+        path = repo_root / code_dir
+        if not path.exists():
             continue
-        files.append(f)
-    return files  # mdm_engine/mdm/*.py, excluding position_manager.py only
+        for f in path.rglob("*.py"):
+            rel = str(f.relative_to(repo_root)).replace("\\", "/")
+            if any(re.search(pat, rel) for pat in EXCLUDE_CODE):
+                continue
+            files.append(f)
+    return files
 
 
 def test_invariant_0_docs_domain_agnostic() -> None:
@@ -70,7 +70,7 @@ def test_invariant_0_docs_domain_agnostic() -> None:
 
 
 def test_invariant_0_core_code_domain_agnostic() -> None:
-    """Proposal core (mdm_engine/mdm/, exclude position_manager only) must not contain domain vocabulary."""
+    """Packaged core (mdm_engine/mdm + mdm_engine/security) must not contain domain vocabulary."""
     repo_root = Path(__file__).resolve().parent.parent
     violations = []
     for f in _find_code_files(repo_root):
@@ -83,6 +83,6 @@ def test_invariant_0_core_code_domain_agnostic() -> None:
                 continue
             lower = line.lower()
             for term in FORBIDDEN_TERMS:
-                if term in lower:
+                if re.search(r"\b" + re.escape(term) + r"\b", lower):
                     violations.append((str(f.relative_to(repo_root)), i, term))
     assert not violations, "INVARIANT 0 (core code) violated: " + str(violations[:15])
