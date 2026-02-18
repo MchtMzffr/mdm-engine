@@ -35,10 +35,10 @@ jobs:
 
       - name: Install decision-schema (pinned, fallback to git)
         run: |
-          pip install "decision-schema>=0.2,<0.3" || pip install "git+https://github.com/MchtMzffr/decision-schema.git"
+          pip install "decision-schema>=0.2,<0.3" || pip install "git+https://github.com/MchtMzffr/decision-schema.git@main"
 
       - name: Install package
-        run: pip install -e .
+        run: pip install -e ".[dev]"
 
       - name: Run tests
         run: pytest tests/ -v
