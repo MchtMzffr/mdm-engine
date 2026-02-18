@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """
 Domain-free reference MDM: generic feature keys (signal_0, signal_1, state_scalar_a/b).
 
@@ -19,6 +22,10 @@ def compute_proposal_reference(
 ) -> Proposal:
     """
     Reference MDM: simple scoring from generic signals.
+
+    Formulas: raw_score = 0.4·scale_score + 0.4·signal_score + 0.2·width_penalty;
+    confidence = σ(5·(raw_score − 0.5)). Full equations in docs/FORMULAS.md
+    (Reference implementation: generic numeric scorer).
 
     Args:
         features: Generic keys signal_0, signal_1, state_scalar_a, state_scalar_b (optional)

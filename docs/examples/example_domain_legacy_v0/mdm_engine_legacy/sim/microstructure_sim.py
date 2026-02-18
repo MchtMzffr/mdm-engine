@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """Simulate book: mid random walk, spread, depth, fills with slippage."""
 
 from __future__ import annotations

@@ -1,3 +1,8 @@
+<!--
+Decision Ecosystem — mdm-engine
+Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+SPDX-License-Identifier: MIT
+-->
 # Architecture — mdm-engine
 
 ## Role in the ecosystem

@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """Contract compatibility test: verify decision-schema dependency."""
 
 from decision_schema import __version__

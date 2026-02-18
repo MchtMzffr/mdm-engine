@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """Security audit: write to ./runs/<run_id>/security_audit.jsonl; no secrets."""
 
 from __future__ import annotations

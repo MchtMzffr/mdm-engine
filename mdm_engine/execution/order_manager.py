@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """Post-only quoting: cancel/replace only when needed; order aging; min requote."""
 
 from __future__ import annotations

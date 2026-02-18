@@ -1,3 +1,8 @@
+<!--
+Decision Ecosystem — mdm-engine
+Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+SPDX-License-Identifier: MIT
+-->
 # Robotics Control Example
 
 This example shows how to use MDM Engine for robotics control systems.

@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """
 LEGACY: Example-domain reference model (mid, spread, depth, imbalance, bid_quote, ask_quote).
 

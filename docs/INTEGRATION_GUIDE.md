@@ -1,3 +1,8 @@
+<!--
+Decision Ecosystem — mdm-engine
+Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+SPDX-License-Identifier: MIT
+-->
 # Integration Guide — mdm-engine
 
 ## Dependency

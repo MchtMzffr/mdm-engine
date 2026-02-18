@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """Smoke test: DecisionEngine.propose domain-free (no skip)."""
 
 from decision_schema.types import Action

@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """JSONL writer for PacketV2; path = ./runs/<run_id>/traces.jsonl."""
 
 from __future__ import annotations

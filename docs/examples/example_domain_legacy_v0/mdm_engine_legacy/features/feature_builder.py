@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """Build features from book snapshot: mid, spread, depth, imbalance, sigma, staleness, 5m regime,
    weighted imbalance, microprice, vwap, pressure, sigma_spike_z, cost_ticks."""
 

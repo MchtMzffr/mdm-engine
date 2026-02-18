@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """Security: secrets, signing, redaction, rate limit, audit."""
 
 from mdm_engine.security.secrets import SecretsProvider, EnvSecretsProvider

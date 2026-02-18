@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """INVARIANT 2: mdm_engine must not import dmc_core, ops_health_core, eval_calibration_core."""
 
 import ast

@@ -1,3 +1,8 @@
+<!--
+Decision Ecosystem — mdm-engine
+Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+SPDX-License-Identifier: MIT
+-->
 # Example domain legacy v0
 
 Quarantined reference model with domain-specific feature names (mid, imbalance, depth, bid_quote, ask_quote).

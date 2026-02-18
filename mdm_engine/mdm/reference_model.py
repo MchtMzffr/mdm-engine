@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """Re-export domain-free reference implementation. Legacy mapping lives in docs/examples."""
 
 from mdm_engine.mdm.reference_model_generic import (

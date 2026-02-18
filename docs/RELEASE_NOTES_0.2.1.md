@@ -1,3 +1,8 @@
+<!--
+Decision Ecosystem — mdm-engine
+Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+SPDX-License-Identifier: MIT
+-->
 # Release Notes — mdm-engine 0.2.1
 
 **Release Date:** 2026-02-17  

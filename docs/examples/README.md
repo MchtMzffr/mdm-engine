@@ -1,3 +1,8 @@
+<!--
+Decision Ecosystem — mdm-engine
+Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+SPDX-License-Identifier: MIT
+-->
 # Example / Integration Code
 
 **Core API is proposal generation only.** Event loop, execution, and DMC integration are not part of the installed package.

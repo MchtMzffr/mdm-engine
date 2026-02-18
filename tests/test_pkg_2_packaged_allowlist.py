@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """PKG-2: Wheel must only contain allowlisted packages (mdm_engine.mdm*, mdm_engine.security*)."""
 
 import subprocess

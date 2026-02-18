@@ -1,3 +1,8 @@
+<!--
+Decision Ecosystem — mdm-engine
+Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+SPDX-License-Identifier: MIT
+-->
 # mdm-engine (Proposal Generation Runtime)
 
 `mdm-engine` generates **domain-agnostic proposals**: given a state/context snapshot, it produces a `decision_schema.types.Proposal` plus an optional `PacketV2` trace.

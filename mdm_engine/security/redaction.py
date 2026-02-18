@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """Redact secrets from dicts/logs; never log keys, tokens, raw payloads."""
 
 from __future__ import annotations

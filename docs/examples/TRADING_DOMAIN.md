@@ -1,3 +1,8 @@
+<!--
+Decision Ecosystem — mdm-engine
+Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+SPDX-License-Identifier: MIT
+-->
 # Trading Domain Example
 
 **Note**: This is a domain-specific example. Trading terminology is kept here for reference only. The core MDM Engine is domain-agnostic.

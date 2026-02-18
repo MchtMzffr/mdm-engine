@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """SigningProvider interface and stub; timestamp/nonce, replay protection."""
 
 from abc import ABC, abstractmethod

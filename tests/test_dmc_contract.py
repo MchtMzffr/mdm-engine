@@ -1,3 +1,6 @@
+# Decision Ecosystem — mdm-engine
+# Copyright (c) 2026 Mücahit Muzaffer Karafil (MchtMzffr)
+# SPDX-License-Identifier: MIT
 """Contract smoke test: verify MDM Engine can import and use DMC schema/types."""
 
 from __future__ import annotations
