@@ -29,6 +29,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      SMOKE_IMPORT: mdm_engine
     strategy:
       fail-fast: false
       matrix:
@@ -65,6 +67,11 @@ jobs:
 
       - name: INV-BUILD-1 (package build)
         run: python -m build
+
+      - name: INV-CI-BUILD-SMOKE-1 (wheel smoke)
+        run: |
+          pip install dist/*.whl
+          python -c "import importlib, os; importlib.import_module(os.environ['SMOKE_IMPORT'])"
 
       - name: Run tests
         run: pytest tests/ -v --json-report --json-report-file=pytest-report.json --cov=. --cov-report=term-missing --no-cov-on-fail
