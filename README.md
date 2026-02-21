@@ -99,7 +99,7 @@ print(f"Action: {proposal.action}, Confidence: {proposal.confidence}")
 
 MDM Engine outputs `Proposal` (from `decision-schema` package). This is the **single source of truth** for type contracts.
 
-**Schema Dependency**: MDM Engine depends **only** on `decision-schema>=0.2,<0.3` for type contracts. Compatibility check: `min_minor=2, max_minor=2`.
+**Schema Dependency**: MDM Engine depends **only** on `decision-schema>=0.2.2,<0.3` for type contracts. Compatibility check: `min_minor=2, max_minor=2`.
 
 **Optional DMC Integration**: For risk-aware decision modulation, integrate `decision-modulation-core` (DMC) as an optional layer:
 
