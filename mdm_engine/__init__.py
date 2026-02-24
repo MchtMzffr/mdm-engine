@@ -13,9 +13,7 @@ if TYPE_CHECKING:
 __version__ = "0.2.1"
 
 
-def propose(
-    features: dict[str, Any], confidence_threshold: float = 0.5
-) -> Proposal:
+def propose(features: dict[str, Any], confidence_threshold: float = 0.5) -> Proposal:
     """
     Single entry point: features -> Proposal (reference or private hook).
 
@@ -24,9 +22,7 @@ def propose(
     """
     from mdm_engine.mdm.decision_engine import DecisionEngine
 
-    return DecisionEngine(confidence_threshold=confidence_threshold).propose(
-        features
-    )
+    return DecisionEngine(confidence_threshold=confidence_threshold).propose(features)
 
 
 __all__ = ["__version__", "propose"]
